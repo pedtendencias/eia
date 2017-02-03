@@ -8,6 +8,7 @@ module Eia
 
 # Version 0.1.1
 # Fixes gemspec refference to net.
+# Adds refference to ibge.rb in lib/eba.rb
 
 
 end
