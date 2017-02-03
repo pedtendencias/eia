@@ -11,5 +11,8 @@ module Eia
 # Adds refference to ibge.rb in lib/eba.rb
 # Fixes implementation of get in test_connection
 
+# Version 0.2.1
+# Adds rspec test for connection with the webservice
+
 
 end

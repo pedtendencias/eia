@@ -6,10 +6,12 @@ RSpec.describe Eia do
   end
   
   before :all do
-	@eia = IBGE.new
+    @eia = IBGE.new
   end
 
-  it "I try to connect to IBGE" do
-    expect(@eia.test_connection).to eq(true)
+  context "created an valid IBGE instance" do
+    it "can connect to IBGE" do
+      expect(@eia.test_connection).to eq(true)
+    end
   end
 end
