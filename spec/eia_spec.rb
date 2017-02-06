@@ -13,5 +13,12 @@ RSpec.describe Eia do
     it "can connect to IBGE" do
       expect(@eia.test_connection).to eq(true)
     end
+
+		context "is conected to IBGE" do
+			it "can request a valid result" do
+				#faz alguma coisa
+				expect(false).to eq(true)
+			end
+		end
   end
 end
