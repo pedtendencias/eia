@@ -1,5 +1,5 @@
 module Eia
-  VERSION = "0.1.1"
+  VERSION = "0.3.1"
 
 #Standard for version: xx.yy.zz
 # xx - release
@@ -14,5 +14,6 @@ module Eia
 # Version 0.2.1
 # Adds rspec test for connection with the webservice
 
-
+# Version 0.3.1
+# Adds data standardization
 end
