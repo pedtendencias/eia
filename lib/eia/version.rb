@@ -16,4 +16,10 @@ module Eia
 
 # Version 0.3.1
 # Adds data standardization
+
+# Version 1.0.0
+# First release.
+# Fully supports most data points from IBGE.
+# Tests cover all features.
+# Appropriate error treatment.
 end
