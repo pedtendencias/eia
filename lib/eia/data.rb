@@ -1,32 +1,35 @@
 class DataIBGE
-	def initialize(year, variable, location, product, unit, value)
-		@year = standardize_year(year)
+	def initialize(date, variable, location, product, unit, value, periodicity)
+		@date = standardize_date(date, periodicity)
 		@variable = variable
 		@location = location
 		@product = product
 		@unit = unit
 		@value = value
+
+		#The standard is:
+		# 5 : "Trimestral Móvel"
+		# 6 : "Ano"
+		@periodicity = periodicity 
 	end
 
-	def standardize_year(year)
-		#year is a four digit number
-		if year.length == 4 then
-			return "01/01/#{year}"
-
-		#date is in teh form AAAAMM or AAAATT still needs a form to differ both forms
-		elsif year.length == 6 then
-			y = year[0..3]
-			m = year[4..5]
+	def standardize_date(date, periodicity)
+		#date is a four digit number
+		if periodicity == 6 then
+			return "01/01/#{date}"
+		elsif periodicity == 5 then
+			y = date[0..3]
+			m = date[4..5]
 
 			return "01/#{m}/#{y}"
 		else
-			puts "\nError parsing date for DataIBGE. Attempted to parse #{year}.\n"
+			puts "\nError parsing date for DataIBGE. Attempted to parse #{date}.\n"
 			return "ERROR"
 		end
 	end
 
-	def year
-		return @year
+	def date
+		return @date
 	end
 
 	def variable
@@ -50,11 +53,31 @@ class DataIBGE
 	end
 
 	def is_valid?
-		return @year != '' and @year != "ERROR" and @year != nil and
-					 @variable != '' and @variable != nil and
-					 @location != '' and @location != nil and
-					 @product != '' and @product != nil and
-					 @unit != '' and @unit != nil and
-					 @value != '' and @value != nil
+		if @date == '' or @date == "ERROR" or @date == nil then
+			puts "Date found is invalid. Value is '#{@date}'."
+			return false
+		end
+		
+		if @variable == '' or @variable == nil then
+			puts "Variable found is invalid. Value is '#{@variable}'."
+			return false
+		end
+	
+		if @location == '' or @location == nil then
+			puts "Location found is invalid. Value is '#{@location}'."
+			return false
+		end
+
+		if @unit == '' or @unit == nil then
+			puts "Unit found is invalid. Value is '#{@unit}'."
+			return false
+		end
+
+		if @value == '' or @value == nil then
+			puts "Value found is invalid. Value is '#{@value}'."
+			return false
+		end
+
+		return true 
 	end
 end
