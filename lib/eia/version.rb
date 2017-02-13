@@ -1,5 +1,5 @@
 module Eia
-  VERSION = "1.0.0"
+  VERSION = "1.0.1"
 
 #Standard for version: xx.yy.zz
 # xx - release
@@ -22,4 +22,8 @@ module Eia
 # Fully supports most data points from IBGE.
 # Tests cover all features.
 # Appropriate error treatment.
+
+# Version 1.0.1
+# Fixes periodicty, as to be able to relate possible periodicities from 0 to 5
+
 end

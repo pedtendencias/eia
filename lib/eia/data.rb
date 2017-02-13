@@ -8,8 +8,8 @@ class DataIBGE
 		@value = value
 
 		#The standard is:
-		# 5 : "Trimestral Móvel"
-		# 6 : "Ano"
+		# 4 : "Trimestral Móvel"
+		# 5 : "Ano"
 		@periodicity = periodicity 
 	end
 

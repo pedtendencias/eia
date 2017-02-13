@@ -68,9 +68,9 @@ class IBGE
 			identifier = heading["D1C"]
 
 			if identifier.include? "Trimestre Móvel" then
-				periodicity = 5
+				periodicity = 4
 			elsif identifier.include? "Ano" then
-				periodicity = 6
+				periodicity = 5
 			else
 				puts "Error! Unexpected case! Found is: #{identifier}. Report to the dev team."
 				return Array.new
