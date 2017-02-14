@@ -89,7 +89,7 @@ class IBGE
 
 				hash.each do |key, value|
 					case key
-						when "D1N" #date
+						when "D1C" #date
 							date = value
 						when "D2N" #variable
 							variable = value

@@ -1,5 +1,5 @@
 module Eia
-  VERSION = "1.1.1"
+  VERSION = "1.1.2"
 
 #Standard for version: xx.yy.zz
 # xx - release
@@ -28,5 +28,8 @@ module Eia
 
 # Version 1.1.1
 # adds table_code to data type
+
+# Version 1.1.2
+# Was taking the wrong date from IBGE's output, not it gets the right one.
 
 end
