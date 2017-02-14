@@ -58,10 +58,10 @@ class IBGE
 			url += "/c#{ws[0]}/#{ws[1]}"
 		end
 	
-		return consume_json(Net::HTTP.get(URI(url)))
+		return consume_json(Net::HTTP.get(URI(url)), code)
 	end
 
-	def consume_json(json_string)
+	def consume_json(json_string, table_code)
 		begin
 			output = JSON.parse(json_string)
 			heading = output.delete_at(0)
@@ -106,7 +106,7 @@ class IBGE
 					end
 				end
 
-				data_array << DataIBGE.new(date, variable, location, product, unit, val, periodicity)
+				data_array << DataIBGE.new(table_code, date, variable, location, product, unit, val, periodicity)
 			end	
 			
 			return data_array	

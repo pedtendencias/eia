@@ -1,5 +1,6 @@
 class DataIBGE
-	def initialize(date, variable, location, product, unit, value, periodicity)
+	def initialize(table_code, date, variable, location, product, unit, value, periodicity)
+		@table_code = table_code
 		@date = standardize_date(date, periodicity)
 		@variable = variable
 		@location = location
@@ -28,6 +29,10 @@ class DataIBGE
 		end
 	end
 
+	def table_code
+		return @table_code
+	end
+
 	def date
 		return @date
 	end
@@ -53,6 +58,11 @@ class DataIBGE
 	end
 
 	def is_valid?
+		if @table_code == '' or @table_code == nil or @table_code.to_i <= 0 then
+			puts "Invalid table code supplied. Value is #{@table_code}."
+			return false
+		end
+
 		if @date == '' or @date == "ERROR" or @date == nil then
 			puts "Date found is invalid. Value is '#{@date}'."
 			return false

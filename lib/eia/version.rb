@@ -1,5 +1,5 @@
 module Eia
-  VERSION = "1.0.1"
+  VERSION = "1.1.1"
 
 #Standard for version: xx.yy.zz
 # xx - release
@@ -25,5 +25,8 @@ module Eia
 
 # Version 1.0.1
 # Fixes periodicty, as to be able to relate possible periodicities from 0 to 5
+
+# Version 1.1.1
+# adds table_code to data type
 
 end
