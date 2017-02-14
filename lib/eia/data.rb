@@ -57,6 +57,10 @@ class DataIBGE
 		return @value.to_f
 	end
 
+	def periodicity
+		return @periodicity
+	end
+
 	def is_valid?
 		if @table_code == '' or @table_code == nil or @table_code.to_i <= 0 then
 			puts "Invalid table code supplied. Value is #{@table_code}."
@@ -80,6 +84,11 @@ class DataIBGE
 
 		if @unit == '' or @unit == nil then
 			puts "Unit found is invalid. Value is '#{@unit}'."
+			return false
+		end
+
+		if @periodicity == nil or @periodicity.to_i > 5 or @periodicity.to_i < 0 then
+			puts "Periodicity is invalid. Value is '#{@periodicity}'."
 			return false
 		end
 

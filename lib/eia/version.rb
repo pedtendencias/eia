@@ -1,5 +1,5 @@
 module Eia
-  VERSION = "1.1.3"
+  VERSION = "1.1.4"
 
 #Standard for version: xx.yy.zz
 # xx - release
@@ -34,5 +34,9 @@ module Eia
 
 # Version 1.1.3
 # Another fixup on data classification and parsing.
+
+# Version 1.1.4
+# Adds getter for periodicity in data type, which I had forgot.
+# Also adds periodicity to integrity verification.
 
 end
