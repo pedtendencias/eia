@@ -16,9 +16,9 @@ class DataIBGE
 
 	def standardize_date(date, periodicity)
 		#date is a four digit number
-		if periodicity == 6 then
+		if periodicity == 5 then
 			return "01/01/#{date}"
-		elsif periodicity == 5 then
+		elsif periodicity == 4 then
 			y = date[0..3]
 			m = date[4..5]
 

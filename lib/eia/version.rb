@@ -1,5 +1,5 @@
 module Eia
-  VERSION = "1.1.2"
+  VERSION = "1.1.3"
 
 #Standard for version: xx.yy.zz
 # xx - release
@@ -31,5 +31,8 @@ module Eia
 
 # Version 1.1.2
 # Was taking the wrong date from IBGE's output, not it gets the right one.
+
+# Version 1.1.3
+# Another fixup on data classification and parsing.
 
 end
