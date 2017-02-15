@@ -18,11 +18,11 @@ class DataIBGE
 		#date is a four digit number
 		if periodicity == 5 then
 			return "01/01/#{date}"
-		elsif periodicity == 4 then
+		elsif periodicity == 4 or periodicity == 3 then
 			y = date[0..3]
 			m = date[4..5]
 
-			return "01/#{m}/#{y}"
+			return "01/#{m}/#{y}"		
 		else
 			puts "\nError parsing date for DataIBGE. Attempted to parse #{date}.\n"
 			return "ERROR"

@@ -65,12 +65,14 @@ class IBGE
 		begin
 			output = JSON.parse(json_string)
 			heading = output.delete_at(0)
-			identifier = heading["D1C"]
+			identifier = heading["D1N"]
 
 			if identifier.include? "Trimestre Móvel" then
 				periodicity = 4
 			elsif identifier.include? "Ano" then
 				periodicity = 5
+			elseif identificer.include? "Mês" then
+				periodicity = 2
 			else
 				puts "Error! Unexpected case! Found is: #{identifier}. Report to the dev team."
 				return Array.new
