@@ -71,7 +71,7 @@ class IBGE
 				periodicity = 4
 			elsif identifier.include? "Ano" then
 				periodicity = 5
-			elseif identificer.include? "Mês" then
+			elsif identifier.include? "Mês" then
 				periodicity = 2
 			else
 				puts "Error! Unexpected case! Found is: #{identifier}. Report to the dev team."
@@ -84,7 +84,7 @@ class IBGE
 				data = nil
 				date = nil
 				variable = nil
-				product = nil
+				classification = Array.new
 				location = nil
 				unit = nil
 				val = nil
@@ -97,18 +97,20 @@ class IBGE
 							variable = value
 						when "D3N" #location
 							location = value
-						when "D4N" #product
-							product = value
 						when "MN" #unit
 							unit = value
 						when "V" #value
 							val = value.to_f
 						else
-							#This information is discarded
+							if key.include? "D" and key.include? "N" and key[1].to_i > 3 then
+								classification << "#{heading[key]}: #{value}"
+							end
+							#Else this information is discarded
 					end
 				end
 
-				data_array << DataIBGE.new(table_code, date, variable, location, product, unit, val, periodicity)
+				data_array << DataIBGE.new(table_code, date, variable, location, 
+																	 classification, unit, val, periodicity)
 			end	
 			
 			return data_array	

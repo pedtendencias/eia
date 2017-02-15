@@ -1,10 +1,13 @@
 class DataIBGE
-	def initialize(table_code, date, variable, location, product, unit, value, periodicity)
+	def initialize(table_code, date, variable, location, classification, unit, value, periodicity)
 		@table_code = table_code
 		@date = standardize_date(date, periodicity)
 		@variable = variable
 		@location = location
-		@product = product
+
+		#is an array
+		@classification = classification
+
 		@unit = unit
 		@value = value
 
@@ -45,8 +48,8 @@ class DataIBGE
 		return @location
 	end
 	
-	def product
-		return @product
+	def classification
+		return @classification
 	end
 
 	def unit
@@ -94,6 +97,11 @@ class DataIBGE
 
 		if @value == '' or @value == nil then
 			puts "Value found is invalid. Value is '#{@value}'."
+			return false
+		end
+
+		if @classification == nil or not @classification.class.to_s.eql? "Array" then
+			puts "Classification is invalid. Value is nil."
 			return false
 		end
 

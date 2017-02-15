@@ -1,5 +1,5 @@
 module Eia
-  VERSION = "1.2.4"
+  VERSION = "1.2.5"
 
 #Standard for version: xx.yy.zz
 # xx - release
@@ -39,6 +39,8 @@ module Eia
 # Adds getter for periodicity in data type, which I had forgot.
 # Also adds periodicity to integrity verification.
 
-# Version 1.2.4
+# Version 1.2.5
 # Adds a new date classification for data.
+# Renames procut as classification, as it's according what actual data in the source is like.
+# Properly identifies classifications and stores then.
 end
