@@ -1,5 +1,5 @@
 module Eia
-  VERSION = "1.2.5"
+  VERSION = "1.3.5"
 
 #Standard for version: xx.yy.zz
 # xx - release
@@ -43,4 +43,7 @@ module Eia
 # Adds a new date classification for data.
 # Renames procut as classification, as it's according what actual data in the source is like.
 # Properly identifies classifications and stores then.
+
+# Version 1.3.5
+# Expanded spec tests.
 end

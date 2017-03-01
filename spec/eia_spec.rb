@@ -39,30 +39,139 @@ RSpec.describe Eia do
 			end
 		
 			context "which is valid" do
-				before :all do
-					@valid_request = @con.get_series(@valid_series[:code],
-																					 @valid_series[:period],
-																					 @valid_series[:variables],
-																					 @valid_series[:territorial_level],
-																					 @valid_series[:classification])
-					@item = @valid_request[0]
+				context "and queries using a single variable" do
+					before :all do
+						@valid_request = @con.get_series(@valid_series[:code],
+																						 @valid_series[:period],
+																						 @valid_series[:variables], nil, nil)
+						@item = @valid_request[0]
+					end
+
+					it "has one or more items" do
+						expect(@valid_request.length >= 1).to eq(true)
+					end
+
+					it "has no nils" do
+						expect(@valid_request.include? nil).to eq(false)
+					end
+
+					it "has valid values" do
+						expect(@item.is_valid?).to eq(true)
+					end
+
+					context "and has classifications" do
+						it "has one or more classifications" do
+							expect(@item.classification[0] != nil).to eq(true)
+						end
+					end
 				end
 
-				it "has one or more items" do
-					expect(@valid_request.length >= 1).to eq(true)
+				context "and queries using a single classification" do
+					before :all do
+						@valid_request = @con.get_series(@valid_series[:code],
+																						 @valid_series[:period],
+																						 nil, nil, @valid_series[:classification])
+						@item = @valid_request[0]
+					end
+
+					it "has one or more items" do
+						expect(@valid_request.length >= 1).to eq(true)
+					end
+
+					it "has no nils" do
+						expect(@valid_request.include? nil).to eq(false)
+					end
+
+					it "has valid values" do
+						expect(@item.is_valid?).to eq(true)
+					end
+
+					context "and has classifications" do
+						it "has one or more classifications" do
+							expect(@item.classification[0] != nil).to eq(true)
+						end
+					end
 				end
 
-				it "has no nils" do
-					expect(@valid_request.include? nil).to eq(false)
+				context "and queries using a single territory" do
+					before :all do
+						@valid_request = @con.get_series(@valid_series[:code],
+																						 @valid_series[:period],
+																						 nil, @valid_series[:territorial_level], nil)
+						@item = @valid_request[0]
+					end
+
+					it "has one or more items" do
+						expect(@valid_request.length >= 1).to eq(true)
+					end
+
+					it "has no nils" do
+						expect(@valid_request.include? nil).to eq(false)
+					end
+
+					it "has valid values" do
+						expect(@item.is_valid?).to eq(true)
+					end
+
+					context "and has classifications" do
+						it "has one or more classifications" do
+							expect(@item.classification[0] != nil).to eq(true)
+						end
+					end
 				end
 
-				it "has valid values" do
-					expect(@item.is_valid?).to eq(true)
-				end
+				context "and requesting using all fields" do
+					before :all do
+						@valid_request = @con.get_series(@valid_series[:code],
+																						 @valid_series[:period],
+																						 @valid_series[:variables],
+																						 @valid_series[:territorial_level],
+																						 @valid_series[:classification])
+						@item = @valid_request[0]
+					end
 
-				context "and has classifications" do
-					it "has one or more classifications" do
-						expect(@item.classification[0] != nil).to eq(true)
+					it "has one or more items" do
+						expect(@valid_request.length >= 1).to eq(true)
+					end
+
+					it "has no nils" do
+						expect(@valid_request.include? nil).to eq(false)
+					end
+
+					it "has valid values" do
+						expect(@item.is_valid?).to eq(true)
+					end
+
+					context "and has classifications" do
+						it "has one or more classifications" do
+							expect(@item.classification[0] != nil).to eq(true)
+						end
+					end
+				end
+				
+				context "and queries using no fields" do
+					before :all do
+						@valid_request = @con.get_series(@valid_series[:code],
+																						 nil, nil, nil, nil)
+						@item = @valid_request[0]
+					end
+
+					it "has one or more items" do
+						expect(@valid_request.length >= 1).to eq(true)
+					end
+
+					it "has no nils" do
+						expect(@valid_request.include? nil).to eq(false)
+					end
+
+					it "has valid values" do
+						expect(@item.is_valid?).to eq(true)
+					end
+
+					context "and has classifications" do
+						it "has one or more classifications" do
+							expect(@item.classification[0] != nil).to eq(true)
+						end
 					end
 				end
 			end
