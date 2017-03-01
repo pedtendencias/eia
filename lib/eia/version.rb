@@ -1,5 +1,5 @@
 module Eia
-  VERSION = "1.3.5"
+  VERSION = "1.3.6"
 
 #Standard for version: xx.yy.zz
 # xx - release
@@ -46,4 +46,7 @@ module Eia
 
 # Version 1.3.5
 # Expanded spec tests.
+
+# Version 1.3.6
+# Hamdles correctly monthly series.
 end

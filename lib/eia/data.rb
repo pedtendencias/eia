@@ -21,7 +21,7 @@ class DataIBGE
 		#date is a four digit number
 		if periodicity == 5 then
 			return "01/01/#{date}"
-		elsif periodicity == 4 or periodicity == 3 then
+		elsif periodicity == 4 or periodicity == 2 then
 			y = date[0..3]
 			m = date[4..5]
 
