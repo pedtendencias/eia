@@ -17,8 +17,12 @@ RSpec.describe Eia do
 		context "is conected to IBGE and requests a series" do
 			before :all do
 				@valid_series = {code: "1955", period:  "last",
-												 variables: "96", territorial_level: "1|all;",
+												 variables: "96", territorial_level: "1|all",
 												 classification: "1|2"}
+
+				@valid_series_2 = {code: "3418", period:  "last",
+												 variables: "564", territorial_level: "1|1",
+												 classification: "85|90671;11046|12824"}
 
 				@invalid_series = {code: "1", period: "last", variables: "all", 
 													 territorial_level: "2|all;", classification: "81|2702"}
@@ -92,6 +96,34 @@ RSpec.describe Eia do
 						end
 					end
 				end
+
+				context "and queries using two classifications" do
+					before :all do
+						@valid_request = @con.get_series(@valid_series_2[:code],
+																						 @valid_series_2[:period],
+																						 nil, nil, @valid_series_2[:classification])
+						@item = @valid_request[0]
+					end
+
+					it "has one or more items" do
+						expect(@valid_request.length >= 1).to eq(true)
+					end
+
+					it "has no nils" do
+						expect(@valid_request.include? nil).to eq(false)
+					end
+
+					it "has valid values" do
+						expect(@item.is_valid?).to eq(true)
+					end
+
+					context "and has classifications" do
+						it "has one or more classifications" do
+							expect(@item.classification[0] != nil).to eq(true)
+						end
+					end
+				end
+
 
 				context "and queries using a single territory" do
 					before :all do
