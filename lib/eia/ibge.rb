@@ -24,7 +24,7 @@ class IBGE
 	# territorial_leve : a string in the form n_lvl+0|territories_0;n_lvl_1|territories_1;...
   #										 where n_lvl_k is a number from 1 to 6 and territories_i is a valid
 	#										 string form specifying terriories
-	# classification : a string in the form c_lvl_k | list_of_products
+	# classification : a string in the form c_lvl_k | list_of_products; c_lvl_j | list_of_products; ...
 	def get_series(code, period, variables, territorial_level, classification)
 		url = @webservice_url + "/values"
 
@@ -54,8 +54,10 @@ class IBGE
 		end
 		
 		if classification != '' and classification != nil then
-			ws = classification.split('|')
-			url += "/c#{ws[0]}/#{ws[1]}"
+			classification.split(';').each do |word|
+				ws = word.split('|')
+				url += "/c#{ws[0]}/#{ws[1]}"
+			end
 		end
 	
 		return consume_json(Net::HTTP.get(URI(url)), code)
