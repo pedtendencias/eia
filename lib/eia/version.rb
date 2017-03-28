@@ -1,5 +1,5 @@
 module Eia
-  VERSION = "1.3.6"
+  VERSION = "1.4.6"
 
 #Standard for version: xx.yy.zz
 # xx - release
@@ -48,5 +48,8 @@ module Eia
 # Expanded spec tests.
 
 # Version 1.3.6
-# Hamdles correctly monthly series.
+# Handles correctly monthly series.
+
+# Version 1.4.6
+# Adds support for multiple classifications.
 end

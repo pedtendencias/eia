@@ -12,6 +12,7 @@ class DataIBGE
 		@value = value
 
 		#The standard is:
+		# 2 : "Mês"
 		# 4 : "Trimestral Móvel"
 		# 5 : "Ano"
 		@periodicity = periodicity 
