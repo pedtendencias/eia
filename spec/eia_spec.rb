@@ -22,7 +22,7 @@ RSpec.describe Eia do
 
 				@valid_series_2 = {code: "3418", period:  "last",
 												 variables: "564", territorial_level: "1|1",
-												 classification: "85|90671;11046|12824"}
+												 classification: "85|90671;11046|40311"}
 
 				@invalid_series = {code: "1", period: "last", variables: "all", 
 													 territorial_level: "2|all;", classification: "81|2702"}
