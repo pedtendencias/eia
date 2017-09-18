@@ -1,5 +1,5 @@
 module Eia
-  VERSION = "1.4.6"
+  VERSION = "1.5.7"
 
 #Standard for version: xx.yy.zz
 # xx - release
@@ -52,4 +52,8 @@ module Eia
 
 # Version 1.4.6
 # Adds support for multiple classifications.
+
+# Version 1.5.7
+# Adds support for "Trimestre" periodicity.
+# Updates spec tests, as the classification used for a test was no longer valid.
 end
