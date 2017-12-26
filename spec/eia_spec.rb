@@ -24,6 +24,10 @@ RSpec.describe Eia do
 												 variables: "564", territorial_level: "1|1",
 												 classification: "85|90671;11046|40311"}
 
+				@valid_trimestral_series = {code: 1620, period: "all",
+																		variables: 583, territorial_level: "1|1",
+																		classification: "11255|90691"}
+
 				@invalid_series = {code: "1", period: "last", variables: "all", 
 													 territorial_level: "2|all;", classification: "81|2702"}
 			end
@@ -43,6 +47,46 @@ RSpec.describe Eia do
 			end
 		
 			context "which is valid" do
+				context "and is trimestral" do
+					before :all do
+						@trimestral_request = @con.get_series(@valid_trimestral_series[:code],
+																								@valid_trimestral_series[:period],
+																								@valid_trimestral_series[:variables],
+																								@valid_trimestral_series[:territorial_level],
+																								@valid_trimestral_series[:classification])
+
+						index = 0
+
+						loop do
+							index = 2 + Random.rand(@trimestral_request.length / 4 - 1) * 4
+							break if index <= @trimestral_request.length - 1
+						end
+
+						@item_0 = nil
+						@item_1 = nil
+						@item_2 = nil
+
+						@item_0 = @trimestral_request[index - 1].date
+						@item_1 = @trimestral_request[index].date
+						@item_2 = @trimestral_request[index + 1].date
+						
+						d, m, a = @item_0.split('/')
+						@item_0 = Time.new(a, m, d)
+
+						d, m, a = @item_1.split('/')
+						@item_1 = Time.new(a, m, d)					
+
+						d, m, a = @item_2.split('/')
+						@item_2 = Time.new(a, m, d)
+					end
+
+					it 'has properly spaced data' do
+						expect((@item_1.year * 12 + @item_1.month) - (@item_0.year * 12 + @item_0.month)).to eq(1)	
+						expect((@item_2.year * 12 + @item_2.month) - (@item_1.year * 12 + @item_1.month)).to eq(1)
+						expect((@item_2.year * 12 + @item_2.month) - (@item_0.year * 12 + @item_0.month)).to eq(2)
+					end
+				end
+
 				context "and queries using a single variable" do
 					before :all do
 						@valid_request = @con.get_series(@valid_series[:code],

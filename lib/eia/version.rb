@@ -1,5 +1,5 @@
 module Eia
-  VERSION = "1.5.7"
+  VERSION = "1.6.7"
 
 #Standard for version: xx.yy.zz
 # xx - release
@@ -56,4 +56,7 @@ module Eia
 # Version 1.5.7
 # Adds support for "Trimestre" periodicity.
 # Updates spec tests, as the classification used for a test was no longer valid.
+
+# Version 1.6.7
+# Adds tests for "Trimestre" periodicity.
 end
