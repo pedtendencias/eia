@@ -121,7 +121,7 @@ class IBGE
 			if e.to_s.include? "incompatível com a tabela" then
 				return Array.new
 			else
-				puts "Error parsing the JSON response: #{e}"
+				puts "Error parsing the JSON response: #{e}\nTrace: #{e.backtrace}"
 				return nil
 			end
 		end

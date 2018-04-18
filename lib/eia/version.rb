@@ -1,5 +1,5 @@
 module Eia
-  VERSION = "1.6.7"
+  VERSION = "1.7.7"
 
 #Standard for version: xx.yy.zz
 # xx - release
@@ -59,4 +59,7 @@ module Eia
 
 # Version 1.6.7
 # Adds tests for "Trimestre" periodicity.
+
+# Version 1.7.7
+# Improves logging by adding backtrace.
 end
