@@ -69,7 +69,9 @@ class IBGE
 			heading = output.delete_at(0)
 			identifier = heading["D1N"]
 
-			if identifier.include? "Trimestre Móvel" or identifier.eql? "Trimestre" then
+			if identifier.include? "Trimestre Móvel" then 
+				periodicity = 6
+			elsif identifier.eql? "Trimestre" then
 				periodicity = 4
 			elsif identifier.include? "Ano" then
 				periodicity = 5
