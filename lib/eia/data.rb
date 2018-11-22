@@ -64,7 +64,7 @@ class DataIBGE
 			return false
 		end
 
-		if @periodicity == nil or @periodicity.to_i > 5 or @periodicity.to_i < 0 then
+		if @periodicity == nil or @periodicity.to_i > 6 or @periodicity.to_i < 0 then
 			puts "Periodicity is invalid. Value is '#{@periodicity}'."
 			return false
 		end

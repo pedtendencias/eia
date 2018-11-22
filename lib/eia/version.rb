@@ -1,5 +1,5 @@
 module Eia
-  VERSION = "1.8.7"
+  VERSION = "1.8.8"
 
 #Standard for version: xx.yy.zz
 # xx - release
@@ -65,4 +65,7 @@ module Eia
 
 # Version 1.8.7
 # Indentifies 'Trimestre móvel' as code 6 for periodicity, differing it from 'Trimestre'.
+
+# Version 1.8.8
+# Fixes is_valid? to reconise the new periodicity as valid.
 end
