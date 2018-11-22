@@ -62,4 +62,7 @@ module Eia
 
 # Version 1.7.7
 # Improves logging by adding backtrace.
+
+# Version 1.8.7
+# Indentifies 'Trimestre móvel' as code 6 for periodicity, differing it from 'Trimestre'.
 end

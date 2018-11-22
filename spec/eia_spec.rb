@@ -30,6 +30,10 @@ RSpec.describe Eia do
 
 				@invalid_series = {code: "1", period: "last", variables: "all", 
 													 territorial_level: "2|all;", classification: "81|2702"}
+
+				@trimestre_movel_series = {code: "6318", period: "all", variables: "1641", 
+													 territorial_level: "1|1;", classification: "629|32386"}
+
 			end
 
 			context "which is invalid" do
@@ -47,6 +51,51 @@ RSpec.describe Eia do
 			end
 		
 			context "which is valid" do
+				context "and is of trimestre movel periodicity" do
+					before :all do
+						@trimestral_movel_request = @con.get_series(@trimestre_movel_series[:code],
+																												@trimestre_movel_series[:period],
+																												@trimestre_movel_series[:variables],
+																												@trimestre_movel_series[:territorial_level],
+																												@trimestre_movel_series[:classification])
+
+						index = 0
+
+						loop do
+							index = 2 + Random.rand(@trimestral_movel_request.length / 4 - 1) * 4
+							break if index <= @trimestral_movel_request.length - 1
+						end
+
+						@item_0 = nil
+						@item_1 = nil
+						@item_2 = nil
+						@obj_0 = @trimestral_movel_request[index]
+
+						@item_0 = @trimestral_movel_request[index - 1].date
+						@item_1 = @trimestral_movel_request[index].date
+						@item_2 = @trimestral_movel_request[index + 1].date
+						
+						d, m, a = @item_0.split('/')
+						@item_0 = Time.new(a, m, d)
+
+						d, m, a = @item_1.split('/')
+						@item_1 = Time.new(a, m, d)					
+
+						d, m, a = @item_2.split('/')
+						@item_2 = Time.new(a, m, d)
+					end
+				
+					it 'is identified as Trimestre Móvel' do
+						expect(@obj_0.periodicity).to eq(6)
+					end
+
+					it 'has properly spaced data' do
+						expect((@item_1.year * 12 + @item_1.month) - (@item_0.year * 12 + @item_0.month)).to eq(1)	
+						expect((@item_2.year * 12 + @item_2.month) - (@item_1.year * 12 + @item_1.month)).to eq(1)
+						expect((@item_2.year * 12 + @item_2.month) - (@item_0.year * 12 + @item_0.month)).to eq(2)
+					end
+				end
+
 				context "and is trimestral" do
 					before :all do
 						@trimestral_request = @con.get_series(@valid_trimestral_series[:code],
@@ -66,6 +115,7 @@ RSpec.describe Eia do
 						@item_1 = nil
 						@item_2 = nil
 
+						@data = @trimestral_request[index]
 						@item_0 = @trimestral_request[index - 1].date
 						@item_1 = @trimestral_request[index].date
 						@item_2 = @trimestral_request[index + 1].date
@@ -84,6 +134,10 @@ RSpec.describe Eia do
 						expect((@item_1.year * 12 + @item_1.month) - (@item_0.year * 12 + @item_0.month)).to eq(1)	
 						expect((@item_2.year * 12 + @item_2.month) - (@item_1.year * 12 + @item_1.month)).to eq(1)
 						expect((@item_2.year * 12 + @item_2.month) - (@item_0.year * 12 + @item_0.month)).to eq(2)
+					end
+
+					it 'has the correct periodicity' do
+						expect(@data.periodicity).to eq(4)
 					end
 				end
 
