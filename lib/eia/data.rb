@@ -1,4 +1,7 @@
 class DataIBGE
+	attr_accessor :table_code, :date, :variable, :location, :classification,
+								:unit, :value, :periodicity
+
 	def initialize(table_code, date, variable, location, classification, unit, value, periodicity)
 		@table_code = table_code
 		@date = standardize_date(date, periodicity)
@@ -13,8 +16,9 @@ class DataIBGE
 
 		#The standard is:
 		# 2 : "Mês"
-		# 4 : "Trimestral Móvel"
+		# 4 : "Trimestre"
 		# 5 : "Ano"
+		# 6 : "Trimestre Módel"
 		@periodicity = periodicity 
 	end
 
@@ -22,7 +26,8 @@ class DataIBGE
 		#date is a four digit number
 		if periodicity == 5 then
 			return "01/01/#{date}"
-		elsif periodicity == 4 or periodicity == 2 then
+
+		elsif [2, 4, 6].include?(periodicity) then
 			y = date[0..3]
 			m = date[4..5]
 
@@ -31,38 +36,6 @@ class DataIBGE
 			puts "\nError parsing date for DataIBGE. Attempted to parse #{date}.\n"
 			return "ERROR"
 		end
-	end
-
-	def table_code
-		return @table_code
-	end
-
-	def date
-		return @date
-	end
-
-	def variable
-		return @variable
-	end
-
-	def location
-		return @location
-	end
-	
-	def classification
-		return @classification
-	end
-
-	def unit
-		return @unit
-	end
-	
-	def value
-		return @value.to_f
-	end
-
-	def periodicity
-		return @periodicity
 	end
 
 	def is_valid?
