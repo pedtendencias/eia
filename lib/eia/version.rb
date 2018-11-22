@@ -1,5 +1,5 @@
 module Eia
-  VERSION = "1.8.8"
+VERSION = "1.8.9"
 
 #Standard for version: xx.yy.zz
 # xx - release
@@ -68,4 +68,7 @@ module Eia
 
 # Version 1.8.8
 # Fixes is_valid? to reconise the new periodicity as valid.
+
+# Version 1.8.9
+# Fixes gem push
 end
