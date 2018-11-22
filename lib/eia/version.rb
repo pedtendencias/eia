@@ -1,5 +1,5 @@
 module Eia
-  VERSION = "1.7.7"
+  VERSION = "1.8.7"
 
 #Standard for version: xx.yy.zz
 # xx - release
